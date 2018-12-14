@@ -1,0 +1,28 @@
+<mat-toolbar>
+  <span>ClTwitter</span>
+</mat-toolbar>
+<div class="container"
+     fxLayout
+     fxLayout="column"
+     fxLayoutGap="10px"
+     fxLayoutAlign="center">
+  <div fxLayout fxLayoutAlign="center" *ngIf="unreadMsgNumber != 0">
+    <div class="unread-msg">
+      <button mat-flat-button class="post-btn" (click)="unreadMsg()">{{ unreadMsgNumber }} Unread Messages</button>
+    </div>
+  </div>
+  <div fxLayout fxLayoutAlign="center" *ngFor="let msg of readMsg">
+    <div fxFlex="60%">
+      <app-post-detail class="full-width" [message]="msg.data.msg"></app-post-detail>
+    </div>
+  </div>
+  <div fxLayout fxLayoutAlign="center">
+    <div class="item" fxFlex="60%">
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Leave a comment" [(ngModel)]="postStr"></textarea>
+      </mat-form-field>
+      <button mat-flat-button color="primary" [disabled]="postStr==''" class="post-btn" (click)="post()">POST</button>
+    </div>
+  </div>
+  
+</div>
